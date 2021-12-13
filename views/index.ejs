@@ -1,0 +1,21 @@
+<script type="text/javascript" src="/js/index.js"></script>
+
+<h2>
+  Page Title: <%= page.title %> <br>
+  Link: <a href="https://companieshouse.atlassian.net/wiki<%= page.webui %>"
+    >🔗 This page in Confluence</a>
+</h2>
+
+<p>Choose all categories that apply:</p>
+
+<form class="categories action='#" method='POST'>
+    <% for(let i=0; i<categories.length; i++){ %>
+        <input class="categories-form-fields" type="checkbox" id='<%= categories[i] %>' name='<%= categories[i] %>'/>
+        <label for='<%= categories[i] %>'><%= categories[i] %></label>
+        <br>
+    <% } %>
+
+        <br>
+
+        <button type="submit" class="submit-categories" onclick="onSubmit(event, <%= page.post_id %>)">Submit</button>
+</form>
