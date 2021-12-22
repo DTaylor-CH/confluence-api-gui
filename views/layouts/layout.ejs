@@ -106,8 +106,52 @@
     </header>
 
     <div class="govuk-width-container">
+      <div class="govuk-phase-banner">
+        <p class="govuk-phase-banner__content">
+          <strong class="govuk-tag govuk-phase-banner__content__tag">
+            internal
+          </strong>
+          <span class="govuk-phase-banner__text">
+            This is an internal Companies House app.
+            <a class="govuk-link" href="mailto:dtaylor@companieshouse.gov.uk">
+              Feedback</a
+            >
+            will help us to improve it.
+          </span>
+        </p>
+      </div>
+
       <main class="govuk-main-wrapper" id="main-content" role="main">
-        <h1 class="govuk-heading-xl">Default page template</h1>
+        <h1 class="govuk-heading-xl">Confluence Label Suggestion Tool</h1>
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              What is this application for/how does it work?
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            This application serves up one Confluence page at a time from a
+            single Mongo collection (set in environment variables at the point
+            of deployment). The collection in question will already have been
+            seeded with the metadata of all pages in scope by running a script
+            called 'confluence-api-db-script'. The idea is that the individual
+            user (you!) follows the link to check out the Confluence page, then
+            comes back here and selects one or more labels from the predefined
+            set of options. When you press submit, your suggestion(s) will be
+            written to a Mongo instance, and the same page will not come up
+            again for anyone else. Eventually, all pages will be labelled in
+            some way, and the shared record in Mongo will be used in some way,
+            perhaps to apply those labels programmaticly via the Confluence API,
+            or simply to get a list of pages which we think should be deleted.
+            Through this approach, the work of triaging/labelling pages can be
+            shared amongst anyone with as much or as little time as they have to
+            give the task, and we have a single, centralised picture of the
+            results.
+          </div>
+        </details>
+
+        <%- body %>
       </main>
     </div>
 

@@ -1,21 +1,48 @@
-<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/javascript/index.js"></script>
 
-<h2>
-  Page Title: <%= page.title %> <br>
-  Link: <a href="https://companieshouse.atlassian.net/wiki<%= page.webui %>"
-    >🔗 This page in Confluence</a>
-</h2>
+<dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Page title
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <%= page.title %>
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Confluence link (opens in new tab)
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <a href="https://companieshouse.atlassian.net/wiki<%= page.webui %>" target="_blank"
+            >https://companieshouse.atlassian.net/wiki<%= page.webui %></a>
+      </dd>
+    </div>
+  </dl>
 
-<p>Choose all categories that apply:</p>
+<form class="govuk-form-group categories action='#'" method='POST'>
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+        <h1 class="govuk-fieldset__heading">
+          Which categories apply to the page linked to above?
+        </h1>
+    </legend>
 
-<form class="categories action='#" method='POST'>
+    <div id="confluence-page-hint" class="govuk-hint">
+    Select all that apply.
+    </div>
+
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
     <% for(let i=0; i<categories.length; i++){ %>
-        <input class="categories-form-fields" type="checkbox" id='<%= categories[i] %>' name='<%= categories[i] %>'/>
-        <label for='<%= categories[i] %>'><%= categories[i] %></label>
-        <br>
+        <div class="govuk-checkboxes__item">
+        <input class="categories-form-fields govuk-checkboxes__input" type="checkbox" id='<%= categories[i] %>' name='<%= categories[i] %>'/>
+        <label class="govuk-label govuk-checkboxes__label" for='<%= categories[i] %>'><%= categories[i] %></label>
+        </div>
     <% } %>
+    </div>
 
-        <br>
-
-        <button type="submit" class="submit-categories" onclick="onSubmit(event, <%= page.post_id %>)">Submit</button>
+    </br>
+  
+    <button type="submit" class="govuk-button submit-categories" data-module="govuk-button" onclick="onSubmit(event, <%= page.post_id %>)">
+        Submit
+    </button>
 </form>
